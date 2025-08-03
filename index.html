@@ -3,94 +3,498 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ELIA – IA Brain Training</title>
+  <title>ELIA – IA Brain Training | Défiez votre esprit !</title>
+  <meta name="description" content="Défiez une IA avancée dans des jeux de déduction captivants. Mode détective, mode devin, mini-jeu Memory et classements mondiaux. Gratuit sur Google Play !">
 
-  <!-- Google Fonts pour un look moderne -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      /* palette inspirée des visuels Play Store */
-      --primary:#1AB8FF;      /* bleu néon boutons / accents */
-      --primary-light:#45C9FF;
-      --bg-dark:#0B1D46;      /* bleu nuit dominant */
-      --bg-dark2:#11255A;
-      --text-light:#FFFFFF;
-      --text-muted:#BFD7FF;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
-    body{
-      background:linear-gradient(180deg,var(--bg-dark) 0%,var(--bg-dark2) 100%);
-      color:var(--text-light);
-      line-height:1.55;
-    }
-    header{
-      text-align:center;
-      padding:3rem 1rem;
-    }
-    header img.icon{
-      width:120px;height:120px;
-      border-radius:24px;
-      box-shadow:0 0 12px rgba(0,0,0,.4);
-    }
-    h1{margin-top:1rem;font-size:2rem;font-weight:600;letter-spacing:.5px}
-    h2{font-size:1.3rem;margin-top:2rem;color:var(--primary)}
-    p.lead{margin:1rem 0;color:var(--text-muted);max-width:620px;margin-inline:auto}
+  /* ===== PALETTE ÉTENDUE ===== */
+  :root{
+    --bg-1:#041733;
+    --bg-2:#0d2862;
+    --bg-3:#1a3875;
+    --primary:#00c2ff;
+    --primary-light:#45d5ff;
+    --primary-dark:#0099cc;
+    --accent-green:#34c759;
+    --accent-orange:#ff9500;
+    --accent-purple:#af52de;
+    --txt:#ffffff;
+    --txt-muted:#badeff;
+    --txt-light:#e8f4ff;
+    --card-bg:rgba(26, 56, 117, 0.3);
+    --border:rgba(186, 222, 255, 0.2);
+    --radius:18px;
+    --shadow:0 8px 32px rgba(0, 0, 0, 0.4);
+  }
 
-    /* bouton CTA */
-    .btn{
-      display:inline-block;margin-top:2rem;padding:.9rem 2.2rem;
-      background:var(--primary);color:#fff;font-weight:600;
-      border:none;border-radius:999px;text-decoration:none;
-      transition:background .25s;
-    }
-    .btn:hover{background:var(--primary-light)}
+  /* ===== RESET / BASE ===== */
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Rubik",sans-serif;
+    color:var(--txt);
+    background:linear-gradient(160deg,var(--bg-1) 0%,var(--bg-2) 60%,var(--bg-3) 100%);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none}
+  
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 194, 255, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(0, 194, 255, 0.6), 0 0 40px rgba(0, 194, 255, 0.3); }
+  }
 
-    /* galerie */
-    .gallery{
-      margin:3rem auto;display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1.5rem;max-width:1000px;padding:0 1rem;
-    }
-    .gallery img{
-      width:100%;border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,.35);
-    }
+  /* ===== HERO SECTION ===== */
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:4rem 1rem 3rem;
+    animation:fadeInUp 0.8s ease-out;
+  }
+  
+  .hero__logo{
+    width:140px;height:140px;border-radius:28px;
+    box-shadow:var(--shadow);
+    margin-bottom:2rem;
+    animation:glow 3s ease-in-out infinite;
+    transition:transform 0.3s ease;
+    object-fit:cover;
+  }
+  .hero__logo:hover{transform:scale(1.1)}
+  
+  .hero__title{
+    font-size:3rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+    margin-bottom:1rem;
+    background:linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  
+  .hero__subtitle{
+    font-size:1.3rem;
+    color:var(--accent-orange);
+    font-weight:500;
+    margin-bottom:1.5rem;
+  }
+  
+  .hero__description{
+    margin:0 auto 2.5rem;
+    max-width:720px;
+    color:var(--txt-light);
+    font-weight:300;
+    font-size:1.1rem;
+    line-height:1.65;
+  }
+  
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.8rem;
+    padding:1.2rem 3rem;
+    border-radius:999px;
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+    font-weight:600;
+    font-size:1.1rem;
+    transition:all 0.3s ease;
+    box-shadow:var(--shadow);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  .cta-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 40px rgba(0, 194, 255, 0.4);
+    animation:none;
+  }
 
-    footer{
-      text-align:center;font-size:.85rem;
-      color:var(--text-muted);padding:3rem 1rem;
+  /* ===== FEATURES SECTION ===== */
+  .features{
+    padding:4rem 1rem;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  
+  .section-title{
+    text-align:center;
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:3rem;
+    color:var(--primary-light);
+  }
+  
+  .features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:2rem;
+    margin-bottom:4rem;
+  }
+  
+  .feature-card{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:2rem;
+    backdrop-filter:blur(10px);
+    transition:all 0.3s ease;
+    animation:fadeInUp 0.8s ease-out;
+  }
+  .feature-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+    border-color:var(--primary);
+  }
+  
+  .feature-icon{
+    font-size:3rem;
+    margin-bottom:1rem;
+    display:block;
+  }
+  
+  .feature-title{
+    font-size:1.4rem;
+    font-weight:600;
+    margin-bottom:1rem;
+    color:var(--primary-light);
+  }
+  
+  .feature-desc{
+    color:var(--txt-muted);
+    line-height:1.6;
+  }
+
+  /* ===== GAME MODES ===== */
+  .game-modes{
+    background:linear-gradient(135deg, var(--card-bg), rgba(0, 194, 255, 0.1));
+    border-radius:var(--radius);
+    padding:3rem;
+    margin:2rem 0;
+    border:1px solid var(--border);
+  }
+  
+  .modes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:2rem;
+    margin-top:2rem;
+  }
+  
+  .mode-card{
+    background:rgba(255, 255, 255, 0.05);
+    border-radius:var(--radius);
+    padding:2rem;
+    text-align:center;
+    transition:all 0.3s ease;
+    border:2px solid transparent;
+  }
+  .mode-card:hover{
+    border-color:var(--primary);
+    transform:scale(1.02);
+  }
+  
+  .mode-emoji{
+    font-size:3.5rem;
+    margin-bottom:1rem;
+    display:block;
+  }
+  
+  .mode-title{
+    font-size:1.3rem;
+    font-weight:600;
+    margin-bottom:1rem;
+    color:var(--accent-green);
+  }
+
+  /* ===== CARROUSEL AMÉLIORÉ ===== */
+  .carousel-section{
+    padding:4rem 1rem;
+    text-align:center;
+  }
+  
+  .carousel-wrapper{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    padding:2rem 0;
+    margin:2rem 0;
+  }
+  
+  .carousel{
+    display:flex;
+    gap:1.5rem;
+    width:max-content;
+    animation:scroll 20s linear infinite;
+  }
+  .carousel:hover{animation-play-state:paused}
+  
+  .carousel img{
+    width:280px;
+    height:auto;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    transition:transform 0.3s ease;
+    object-fit:cover;
+  }
+  .carousel img:hover{transform:scale(1.05)}
+  
+  @keyframes scroll{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(calc(-280px * 3 - 1.5rem * 3))}
+  }
+
+  /* ===== STATS SECTION ===== */
+  .stats{
+    background:var(--card-bg);
+    border-radius:var(--radius);
+    padding:3rem;
+    margin:3rem 0;
+    text-align:center;
+    border:1px solid var(--border);
+  }
+  
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:2rem;
+    margin-top:2rem;
+  }
+  
+  .stat-item{
+    padding:1.5rem;
+  }
+  
+  .stat-number{
+    font-size:2.5rem;
+    font-weight:700;
+    color:var(--primary);
+    display:block;
+  }
+  
+  .stat-label{
+    color:var(--txt-muted);
+    font-size:0.9rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    text-align:center;
+    padding:3rem 1rem;
+    color:var(--txt-muted);
+    border-top:1px solid var(--border);
+    margin-top:4rem;
+  }
+  
+  .footer-content{
+    max-width:600px;
+    margin:0 auto;
+  }
+  
+  .footer-links{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    margin-bottom:2rem;
+    flex-wrap:wrap;
+  }
+  
+  .footer-links a{
+    color:var(--primary);
+    transition:color 0.3s ease;
+  }
+  .footer-links a:hover{color:var(--primary-light)}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:768px){
+    .hero__title{font-size:2.2rem}
+    .hero__subtitle{font-size:1.1rem}
+    .section-title{font-size:2rem}
+    .features-grid{grid-template-columns:1fr}
+    .carousel img{width:220px}
+    .stats-grid{grid-template-columns:repeat(2, 1fr)}
+    .footer-links{flex-direction:column;gap:1rem}
+    
+    @keyframes scroll{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(calc(-220px * 3 - 1.5rem * 3))}
     }
+  }
+  
+  @media (max-width:480px){
+    .hero{padding:3rem 1rem 2rem}
+    .features{padding:3rem 1rem}
+    .feature-card, .game-modes, .stats{padding:1.5rem}
+    .cta-btn{padding:1rem 2rem;font-size:1rem}
+  }
   </style>
 </head>
 <body>
 
-  <!-- SECTION HERO -->
-  <header>
-    <img class="icon" src="https://play-lh.googleusercontent.com/vXhCEKey9mQmVU0ACaZdhH1uyCRM1HYihAPkLoZ_4j_a-e1TN_5jSW2YrL-nsxZzsg=w512-h512" alt="ELIA App Icon">
-    <h1>Défiez votre esprit avec&nbsp;ELIA !</h1>
-    <p class="lead">
-      Le <strong>coach cérébral nouvelle génération</strong> dopé à l’IA&nbsp;: deux modes de jeu
-      (détective&nbsp;/ devin), un mini-jeu Memory, des skins rares et un classement mondial.
-      Prêt·e à faire travailler vos neurones&nbsp;?
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img class="hero__logo"
+         src="https://play-lh.googleusercontent.com/vXhCEKey9mQmVU0ACaZdhH1uyCRM1HYihAPkLoZ_4j_a-e1TN_5jSW2YrL-nsxZzsg=w512"
+         alt="Icône ELIA - IA Brain Training">
+    
+    <h1 class="hero__title">🧠 ELIA</h1>
+    <p class="hero__subtitle">L'Entraînement Cérébral Nouvelle Génération</p>
+    
+    <p class="hero__description">
+      Défiez votre esprit avec l'IA la plus intelligente ! ELIA n'est pas qu'un simple jeu — 
+      c'est votre <strong>coach personnel</strong> pour développer votre agilité mentale et vos capacités de déduction. 
+      Plongez dans une expérience unique où vous affrontez une intelligence artificielle avancée dans des défis captivants !
     </p>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.jyadd.elia" target="_blank" rel="noopener">
-      Télécharger sur Google&nbsp;Play
+    
+    <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.jyadd.elia&hl=fr" target="_blank" rel="noopener">
+      <span>📱</span>
+      Télécharger Gratuitement
     </a>
-  </header>
+  </section>
 
-  <!-- GALERIE DE CAPTURES -->
-  <section>
-    <h2 style="text-align:center">Aperçu du gameplay</h2>
-    <div class="gallery">
-      <img src="https://play-lh.googleusercontent.com/3qnYVGqDV5oJ3yoB5pRP2Yj0YWre3xun9yvWhJk0CoV2xjzNo1Hm-WMqP7E7c91QUIM=w526-h296" alt="Écran d’accueil ELIA">
-      <img src="https://play-lh.googleusercontent.com/MQ-q5LZ9wKEcyrJdh9CKqMFRSgJfQbR35RG6q6dP1WW9jwzvg0uSdqVlXaHVNw9exDd0=w526-h296" alt="Choix de difficulté ELIA">
-      <img src="https://play-lh.googleusercontent.com/8QDK4mPVqpzBvVvJMAEWjdceCXMj9EEhOqm0oJdYSk-X5YS9KhWgWdNsx0mn8_r6FRuA=w526-h296" alt="Écran de victoire ELIA">
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <h2 class="section-title">🚀 Pourquoi ELIA va révolutionner vos moments de détente ?</h2>
+    
+    <!-- Game Modes -->
+    <div class="game-modes">
+      <h3 class="section-title" style="font-size:2rem;margin-bottom:1rem">🔥 Deux modes de jeu passionnants</h3>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <span class="mode-emoji">🕵️</span>
+          <h4 class="mode-title">Mode Principal - Détective</h4>
+          <p>À vous de jouer au détective ! Posez les bonnes questions pour découvrir le mot mystère que l'IA a choisi.</p>
+        </div>
+        <div class="mode-card">
+          <span class="mode-emoji">🔮</span>
+          <h4 class="mode-title">Mode Secondaire - Devin</h4>
+          <p>L'IA devine ce à quoi vous pensez ! Répondez simplement « oui » ou « non » et regardez l'intelligence artificielle lire dans vos pensées avec une précision troublante.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features Grid -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🧩</span>
+        <h3 class="feature-title">Mini-jeu Memory</h3>
+        <p class="feature-desc">
+          Testez votre mémoire visuelle avec 5 niveaux progressifs ! Retrouvez les paires d'images 
+          dans un système de récompenses motivant qui vous fait gagner des fragments de skins.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3 class="feature-title">Personnalisation Unique</h3>
+        <p class="feature-desc">
+          Collectionnez des skins rares pour personnaliser votre avatar et montrer votre style ! 
+          Chaque victoire vous rapproche de nouveaux looks exclusifs.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <h3 class="feature-title">Système de Progression</h3>
+        <p class="feature-desc">
+          Énergies, indices et questions bonus, multiplicateurs de score temporaires, 
+          classements mondiaux par difficulté, et récompenses quotidiennes !
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <h3 class="feature-title">Support International</h3>
+        <p class="feature-desc">
+          Plus de 60 langues supportées ! Jouez dans votre langue préférée et 
+          défiez des joueurs du monde entier.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+      <h3 class="section-title" style="font-size:2rem;margin-bottom:1rem">✨ L'expérience qui vous attend</h3>
+      <p style="margin-bottom:2rem;color:var(--txt-light)">
+        Imaginez-vous en train de défier une IA qui semble vraiment lire dans vos pensées, 
+        ou de mener une enquête palpitante pour percer ses secrets. Chaque partie est une nouvelle aventure intellectuelle 
+        où stratégie, logique et intuition se mêlent.
+      </p>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">🧠</span>
+          <span class="stat-label">Stimule votre cerveau</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">🌟</span>
+          <span class="stat-label">Impressionnez vos amis</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">🎯</span>
+          <span class="stat-label">Développez votre logique</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">😌</span>
+          <span class="stat-label">Détendez-vous intelligemment</span>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- SCREENSHOTS CAROUSEL -->
+  <section class="carousel-section">
+    <h2 class="section-title">📱 Découvrez l'interface</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel">
+        <img src="https://play-lh.googleusercontent.com/3qnYVGqDV5oJ3yoB5pRP2Yj0YWre3xun9yvWhJk0CoV2xjzNo1Hm-WMqP7E7c91QUIM=w526" alt="Écran d'accueil ELIA">
+        <img src="https://play-lh.googleusercontent.com/MQ-q5LZ9wKEcyrJdh9CKqMFRSgJfQbR35RG6q6dP1WW9jwzvg0uSdqVlXaHVNw9exDd0=w526" alt="Choix de difficulté ELIA">
+        <img src="https://play-lh.googleusercontent.com/8QDK4mPVqpzBvVvJMAEWjdceCXMj9EEhOqm0oJdYSk-X5YS9KhWgWdNsx0mn8_r6FRuA=w526" alt="Écran de victoire ELIA">
+      </div>
+    </div>
+    
+    <div style="margin-top:3rem">
+      <h3 style="color:var(--accent-green);font-size:1.5rem;margin-bottom:1rem">🎁 Totalement GRATUIT</h3>
+      <p style="color:var(--txt-muted);margin-bottom:2rem">
+        Téléchargez ELIA maintenant et découvrez pourquoi des milliers de joueurs sont déjà accros à ce concentré d'intelligence artificielle !
+      </p>
+      <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.jyadd.elia&hl=fr" target="_blank" rel="noopener">
+        <span>🚀</span>
+        Commencer l'aventure
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    © 2025 ELIA — IA Brain Training • Tous droits réservés
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://play.google.com/store/apps/details?id=com.jyadd.elia&hl=fr" target="_blank">Google Play</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Confidentialité</a>
+      </div>
+      <p>
+        © 2025 – ELIA • IA Brain Training<br>
+        <small style="color:var(--txt-muted)">Prêt à défier votre esprit ? Votre cerveau vous remerciera ! 🧠💪</small>
+      </p>
+    </div>
   </footer>
+
 </body>
 </html>
