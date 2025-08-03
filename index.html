@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ELIA – IA Brain Training</title>
+
+  <!-- Google Fonts pour un look moderne -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* palette inspirée des visuels Play Store */
+      --primary:#1AB8FF;      /* bleu néon boutons / accents */
+      --primary-light:#45C9FF;
+      --bg-dark:#0B1D46;      /* bleu nuit dominant */
+      --bg-dark2:#11255A;
+      --text-light:#FFFFFF;
+      --text-muted:#BFD7FF;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
+    body{
+      background:linear-gradient(180deg,var(--bg-dark) 0%,var(--bg-dark2) 100%);
+      color:var(--text-light);
+      line-height:1.55;
+    }
+    header{
+      text-align:center;
+      padding:3rem 1rem;
+    }
+    header img.icon{
+      width:120px;height:120px;
+      border-radius:24px;
+      box-shadow:0 0 12px rgba(0,0,0,.4);
+    }
+    h1{margin-top:1rem;font-size:2rem;font-weight:600;letter-spacing:.5px}
+    h2{font-size:1.3rem;margin-top:2rem;color:var(--primary)}
+    p.lead{margin:1rem 0;color:var(--text-muted);max-width:620px;margin-inline:auto}
+
+    /* bouton CTA */
+    .btn{
+      display:inline-block;margin-top:2rem;padding:.9rem 2.2rem;
+      background:var(--primary);color:#fff;font-weight:600;
+      border:none;border-radius:999px;text-decoration:none;
+      transition:background .25s;
+    }
+    .btn:hover{background:var(--primary-light)}
+
+    /* galerie */
+    .gallery{
+      margin:3rem auto;display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.5rem;max-width:1000px;padding:0 1rem;
+    }
+    .gallery img{
+      width:100%;border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.35);
+    }
+
+    footer{
+      text-align:center;font-size:.85rem;
+      color:var(--text-muted);padding:3rem 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION HERO -->
+  <header>
+    <img class="icon" src="https://play-lh.googleusercontent.com/vXhCEKey9mQmVU0ACaZdhH1uyCRM1HYihAPkLoZ_4j_a-e1TN_5jSW2YrL-nsxZzsg=w512-h512" alt="ELIA App Icon">
+    <h1>Défiez votre esprit avec&nbsp;ELIA !</h1>
+    <p class="lead">
+      Le <strong>coach cérébral nouvelle génération</strong> dopé à l’IA&nbsp;: deux modes de jeu
+      (détective&nbsp;/ devin), un mini-jeu Memory, des skins rares et un classement mondial.
+      Prêt·e à faire travailler vos neurones&nbsp;?
+    </p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.jyadd.elia" target="_blank" rel="noopener">
+      Télécharger sur Google&nbsp;Play
+    </a>
+  </header>
+
+  <!-- GALERIE DE CAPTURES -->
+  <section>
+    <h2 style="text-align:center">Aperçu du gameplay</h2>
+    <div class="gallery">
+      <img src="https://play-lh.googleusercontent.com/3qnYVGqDV5oJ3yoB5pRP2Yj0YWre3xun9yvWhJk0CoV2xjzNo1Hm-WMqP7E7c91QUIM=w526-h296" alt="Écran d’accueil ELIA">
+      <img src="https://play-lh.googleusercontent.com/MQ-q5LZ9wKEcyrJdh9CKqMFRSgJfQbR35RG6q6dP1WW9jwzvg0uSdqVlXaHVNw9exDd0=w526-h296" alt="Choix de difficulté ELIA">
+      <img src="https://play-lh.googleusercontent.com/8QDK4mPVqpzBvVvJMAEWjdceCXMj9EEhOqm0oJdYSk-X5YS9KhWgWdNsx0mn8_r6FRuA=w526-h296" alt="Écran de victoire ELIA">
+    </div>
+  </section>
+
+  <footer>
+    © 2025 ELIA — IA Brain Training • Tous droits réservés
+  </footer>
+</body>
+</html>
