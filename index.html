@@ -555,10 +555,10 @@
 
   <script>
     // Language switching functionality
-    const langButtons = document.querySelectorAll('.lang-btn');
-    const langContents = document.querySelectorAll('.lang-content');
-    
     function switchLanguage(targetLang) {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      const langContents = document.querySelectorAll('.lang-content');
+      
       // Update buttons
       langButtons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === targetLang);
@@ -581,21 +581,22 @@
         document.title = 'ELIA – AI Brain Training | Challenge Your Mind!';
         metaDesc.content = 'Challenge advanced AI in captivating deduction games. Detective mode, mind-reading mode, Memory mini-game and global leaderboards. Free on Google Play!';
       }
-      
-      // Store preference
-      localStorage.setItem('elia_language', targetLang);
     }
     
-    // Add click listeners
-    langButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchLanguage(btn.dataset.lang);
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      
+      // Add click listeners
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchLanguage(this.dataset.lang);
+        });
       });
+      
+      // Default to English
+      switchLanguage('en');
     });
-    
-    // Load saved preference or default to English
-    const savedLang = localStorage.getItem('elia_language') || 'en';
-    switchLanguage(savedLang);
   </script>
 
 </body>
@@ -746,6 +747,8 @@
       <div class="footer-content">
         <div class="footer-links">
           <a href="https://play.google.com/store/apps/details?id=com.jyadd.elia&hl=fr" target="_blank">Google Play</a>
+          <a href="#contact">Contact</a>
+          <a href="#privacy">Confidentialité</a>
         </div>
         <p>
           © 2025 – ELIA • IA Brain Training<br>
